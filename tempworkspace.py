@@ -1,24 +1,21 @@
-#1) Create a list of “person” dictionaries with a name, age and list of hobbies for each person. Fill in any data you want.
+#1) Write a normal function that accepts another function as an argument. Output the result of that other function in your “normal” function.
 
-persons = [
-    {'name':'Jacob', 'age': 123, 'hobbies':'python'},
-    {'name':'Bob', 'age': 456, 'hobbies':'games'},
-    {'name':'Cheeseburger', 'age': 789, 'hobbies':'eating'}
-    ]
-print(persons)
-#2) Use a list comprehension to convert this list of persons into a list of names (of the persons).
-names = [p['name'] for p in persons]
-print(names)
-#3) Use a list comprehension to check whether all persons are older than 20.
-over_20 = all([p['age'] > 20 for p in persons])
-print(over_20)
-#4) Copy the person list such that you can safely edit the name of the first person (without changing the original list).
-copied_persons = [dict(p) for p in persons]
-copied_persons[0]['name'] = 'changed'
-print(copied_persons)
-print(persons)
-#5) Unpack the persons of the original list into different variables and output these variables.
-a, b, c = persons
-print(a)
-print(b)
-print(c)
+def myfunction(fn):
+    print(fn(10))
+
+#2) Call your “normal” function by passing a lambda function – which performs any operation of your choice – as an argument.
+myfunction(lambda data: data * 2)
+
+#3) Tweak your normal function by allowing an infinite amount of arguments on which your lambda function will be executed.
+def my_infinite_function(fn, *args):
+    for arg in args:
+        print(fn(arg))
+
+
+my_infinite_function(lambda data: data * 2,1,2,3,4,5)
+#4) Format the output of your “normal” function such that numbers look nice and are centered in a 20 character column.
+def my_infinite_function_fmt(fn, *args):
+    for arg in args:
+        print('{:20.2f}'.format(fn(arg)))
+
+my_infinite_function_fmt(lambda data: data * 2,1,2,3,4,5)
