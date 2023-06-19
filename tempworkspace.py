@@ -1,21 +1,14 @@
-#1) Write a normal function that accepts another function as an argument. Output the result of that other function in your “normal” function.
+# 1) Import the random function and generate both a random number between 0 and 1 as well as a random number between 1 and 10.
+import datetime
+import random
 
-def myfunction(fn):
-    print(fn(10))
+random_number_zero_to_1 = random.random()
+print(str(random_number_zero_to_1))
+random_number_1_to_10 = random.randint(1, 10)
+print(str(random_number_1_to_10))
 
-#2) Call your “normal” function by passing a lambda function – which performs any operation of your choice – as an argument.
-myfunction(lambda data: data * 2)
+# 2) Use the datetime library together with the random number to generate a random, unique value.
 
-#3) Tweak your normal function by allowing an infinite amount of arguments on which your lambda function will be executed.
-def my_infinite_function(fn, *args):
-    for arg in args:
-        print(fn(arg))
+unique_value = str(datetime.datetime.now()) + str(random_number_1_to_10)
 
-
-my_infinite_function(lambda data: data * 2,1,2,3,4,5)
-#4) Format the output of your “normal” function such that numbers look nice and are centered in a 20 character column.
-def my_infinite_function_fmt(fn, *args):
-    for arg in args:
-        print('{:20.2f}'.format(fn(arg)))
-
-my_infinite_function_fmt(lambda data: data * 2,1,2,3,4,5)
+print(unique_value)
