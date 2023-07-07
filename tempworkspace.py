@@ -1,35 +1,45 @@
-#1) Write a short Python script which queries the user for input (infinite loop with exit possibility) and writes the input to a file.
-import pickle
+#1) Create a Food class with a “name” and a “kind” attribute as well as a “describe() ” method (which prints “name” and “kind” in a sentence).
 
-#2) Add another option to your user interface: The user should be able to output the data stored in the file in the terminal.
-
-#3) Store user input in a list (instead of directly adding it to the file) and write that list to the file – both with pickle and json.
-
-#4) Adjust the logic to load the file content to work with pickled/ json data.
+#2) Try turning describe()  from an instance method into a class and a static method. Change it back to an instance method thereafter.
 
 
 
-waiting_for_input = True
-user_input_list = []
 
-while waiting_for_input:
-    print('Please choose')
-    print('1: Enter text and save')
-    print('2: load and output')
-    print('q: Quit')
-    user_choice = input('Your Choice: ')
-    if user_choice == '1':
-        tx_data = input('Your Text: ')
-        user_input_list.append(tx_data)
-        with open('daFile.txt', mode='wb') as f:
-            f.write(pickle.dumps(user_input_list))
-    elif user_choice == '2':
-        with open('daFile.txt', mode='rb') as f:
-            file_content = pickle.loads(f.read())
-            for line in file_content:
-                print(line)
-    elif user_choice == 'q':
-        # This will lead to the loop to exist because it's running condition becomes False
-        waiting_for_input = False
-    else:
-        print('Input was invalid, please pick a value from the list!')
+class Food:
+    def __init__(self, name, kind):
+        self.name = name
+        self.kind = kind
+
+    def describe(self):
+        print (str(self.__dict__))
+
+    def __repr__(self):
+        return str(self.__dict__)
+
+
+
+
+#3) Create a  “Meat” and a “Fruit” class – both should inherit from “Food”. Add a “cook() ” method to “Meat” and “clean() ” to “Fruit”.
+class Meat(Food):
+    def cook(self):
+        print("cooking")
+
+class Fruit(Food):
+    def clean(self):
+        print("cleaning")
+
+
+#4) Overwrite a “dunder” method to be able to print your “Food” class.
+
+
+eggs = Food("eggs", "fried")
+eggs.describe()
+print(eggs)
+
+steak = Meat("steak", "rare")
+steak.cook()
+print(steak)
+
+apple = Fruit("apple","fresh")
+apple.clean()
+print(apple)
